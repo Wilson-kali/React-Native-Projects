@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,36 +7,85 @@ import {
   StyleSheet,
   TextInput,
   SafeAreaView,
-  Button,
+  LayoutAnimation,
+  UIManager,
+  Platform,
+  ToastAndroid,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const App = () => {
   const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
 
-  function addTask() {
+  useEffect(() => {
+    const loadTasks = async () => {
+      const storedTasks = await AsyncStorage.getItem("taskList");
+      if (storedTasks) {
+        setTaskList(JSON.parse(storedTasks));
+      }
+    };
+    loadTasks();
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem("taskList", JSON.stringify(taskList));
+  }, [taskList]);
+
+  const showToast = (msg) => {
+    if (Platform.OS === "android") {
+      ToastAndroid.show(msg, ToastAndroid.SHORT);
+    }
+  };
+
+  const addTask = () => {
     if (task.trim()) {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       setTaskList([...taskList, { id: Date.now().toString(), title: task }]);
+      showToast("Task Added");
       setTask("");
     }
-  }
-  function deleteTask(id) {
+  };
+
+  const deleteTask = (id) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     setTaskList(taskList.filter((item) => item.id !== id));
-  }
+    showToast("Task Deleted");
+  };
+
+  const clearAllTasks = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setTaskList([]);
+    showToast("All Tasks Cleared");
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Welcome to my To Do App </Text>
+      <Text style={styles.title}>Welcome to my To Do App</Text>
+
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Add a Task..."
+          placeholderTextColor="#ccc"
           value={task}
           onChangeText={setTask}
-        ></TextInput>
+        />
         <TouchableOpacity style={styles.addButton} onPress={addTask}>
           <Text>Add</Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity style={styles.clearButton} onPress={clearAllTasks}>
+        <Text style={{ color: "white", textAlign: "center" }}>Clear All</Text>
+      </TouchableOpacity>
 
       <FlatList
         data={taskList}
@@ -52,7 +101,7 @@ const App = () => {
             </TouchableOpacity>
           </View>
         )}
-      ></FlatList>
+      />
     </SafeAreaView>
   );
 };
@@ -72,6 +121,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     marginTop: 25,
+    marginHorizontal: 10,
   },
   input: {
     borderColor: "white",
@@ -80,16 +130,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 12,
     borderRadius: 12,
-    marginLeft: 8,
     color: "white",
   },
   addButton: {
     backgroundColor: "aqua",
     paddingHorizontal: 15,
     marginLeft: 10,
-    marginRight: 14,
     borderRadius: 10,
     justifyContent: "center",
+  },
+  clearButton: {
+    backgroundColor: "darkred",
+    marginHorizontal: 12,
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 10,
   },
   taskContainer: {
     backgroundColor: "white",
@@ -97,8 +152,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginLetf: 8,
-    marginRight: 8,
+    marginHorizontal: 10,
     borderRadius: 6,
   },
   deleteBtn: {
@@ -117,4 +171,5 @@ const styles = StyleSheet.create({
     color: "white",
   },
 });
+
 export default App;
