@@ -19,7 +19,8 @@
 | Project | Description | Status |
 |--------|-------------|--------|
 | ✅ **Counter App** | A simple app using `useState` to increment a click counter. Great for understanding state. Copy the counter.js code to Your App.js and build your App!! | ✔ Completed |
-| 🔄 **To-Do App** | A minimal task manager that allows users to add and delete tasks using state and props. Copy the App.js code to Your App.js and build your App!! | ✔ Completed |
+| 🔄 **To-Do App** | A minimal task manager that allows users to add and delete tasks using state, props and async storage. Copy the App.js code to Your App.js and build your App!! Make sure you have Async Storage installed using " npm install @react-native-async-storage/async-storage "
+| ✔ Completed |
 | 🔄 **Weather App** | Pulls real-time weather data from an API and displays it beautifully. Teaches API calls and styling. | ⏳ Upcoming |
 | 🔄 **Cornedian App** | A jokes app that displays random corny jokes fetched from an API. Includes state management and animations. | ⏳ Upcoming |
 | 🔄 **Quiz App** | Multiple-choice quiz app with progress tracking, scores, and timer. Learn navigation + logic. | ⏳ Upcoming |
