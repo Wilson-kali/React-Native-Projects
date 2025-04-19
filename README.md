@@ -1,7 +1,7 @@
 <h1 align="center">📱 React Native Playground 🚀</h1>
 
 <p align="center">
-  A personal collection of React Native mini-projects built to sharpen my skills, explore powerful libraries, and have fun building mobile experiences! 💡🔥
+  A personal collection of React Native mini-projects that I built to sharpen my skills, explore powerful libraries, and have fun building mobile experiences! 💡🔥
 </p>
 
 <p align="center">
@@ -18,8 +18,8 @@
 
 | Project | Description | Status |
 |--------|-------------|--------|
-| ✅ **Counter App** | A simple app using `useState` to increment a click counter. Great for understanding state. | ✔ Completed |
-| 🔄 **To-Do App** | A minimal task manager that allows users to add, mark, and delete tasks using state and props. | ⏳ In Progress |
+| ✅ **Counter App** | A simple app using `useState` to increment a click counter. Great for understanding state. Copy the counter.js code to Your App.js and build your App!! | ✔ Completed |
+| 🔄 **To-Do App** | A minimal task manager that allows users to add and delete tasks using state and props. Copy the App.js code to Your App.js and build your App!! | ✔ Completed |
 | 🔄 **Weather App** | Pulls real-time weather data from an API and displays it beautifully. Teaches API calls and styling. | ⏳ Upcoming |
 | 🔄 **Cornedian App** | A jokes app that displays random corny jokes fetched from an API. Includes state management and animations. | ⏳ Upcoming |
 | 🔄 **Quiz App** | Multiple-choice quiz app with progress tracking, scores, and timer. Learn navigation + logic. | ⏳ Upcoming |
@@ -30,7 +30,7 @@
 
 ## 💻 Tech Stack
 
-- ⚛ **React Native (CLI + Expo)**
+- ⚛ **React Native (I USED CLI BUT EXPO CAN ALSO WORK)**
 - 🎨 React Native Stylesheet, Flexbox
 - 🧠 React Hooks (`useState`, `useEffect`)
 - 📦 API Integrations (Joke API, Weather API, etc.)
@@ -47,7 +47,7 @@
 git clone https://github.com/Wilson-kali/React-Native-Projects.git
 
 # Navigate into the folder
-cd React-Native-Projects/CounterApp
+cd React-Native-Projects/
 
 # Install dependencies
 npm install
